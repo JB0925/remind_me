@@ -11,12 +11,13 @@ router = fastapi.APIRouter()
 @router.get('/')
 @template()
 def home(request: Request): 
-    vm = IndexViewModel(request)
-    return vm.to_dict()
+    # vm = IndexViewModel(request)
+    # return vm.to_dict()
+    return {}
 
 
 @router.get('/register')
 @template()
-def about(request: Request):
+def register(request: Request):
     vm = ViewModelBase(request)
     return {}
