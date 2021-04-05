@@ -1,0 +1,28 @@
+<div metal:use-macro="load: ../shared/base.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+        <p class="lead text-center fw-bold">If you have not already, please register an account with us.
+        Already have an account? <a href="#">Sign in</a></p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <form action="" method="POST">
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" value=${name} required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value=${email} required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" value=${password} required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-control" tal:condition="error">${ error }</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

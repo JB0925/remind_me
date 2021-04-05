@@ -1,10 +1,10 @@
 import fastapi
 from fastapi import requests
 from fastapi_chameleon import template
-from remind_me.viewmodels.shared.viewmodel import ViewModelBase
 from starlette.requests import Request
 
-#from remind_me.viewmodels.home.indexviewmodel import IndexViewModel
+from remind_me.viewmodels.shared.viewmodel import ViewModelBase
+from remind_me.viewmodels.register.register_viewmodel import RegisterViewModel
 
 router = fastapi.APIRouter()
 
@@ -19,5 +19,18 @@ def home(request: Request):
 @router.get('/register')
 @template()
 def register(request: Request):
-    vm = ViewModelBase(request)
-    return {}
+    vm = RegisterViewModel(request)
+    return vm.to_dict()
+
+
+@router.post('/register')
+@template()
+async def register(request: Request):
+    vm = RegisterViewModel(request)
+    await vm.load()
+
+    if vm.error:
+        return vm.to_dict()
+    
+    print('FIX THIS')
+    return vm.to_dict()
