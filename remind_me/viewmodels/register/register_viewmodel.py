@@ -6,13 +6,14 @@ from remind_me.viewmodels.shared.viewmodel import ViewModelBase
 class RegisterViewModel(ViewModelBase):
     def __init__(self, request: Request) -> None:
         super().__init__(request)
-        self.name: Optional[str] = None
-        self.email: Optional[str] = None
-        self.password: Optional[str] = None
+        self.name: Optional[str] = ""
+        self.email: Optional[str] = ""
+        self.password: Optional[str] = ""
     
 
     async def load(self):
         form = await self.request.form()
+        print(form)
         self.name = form.get('name')
         self.email = form.get('email')
         self.password = form.get('password')
@@ -23,3 +24,5 @@ class RegisterViewModel(ViewModelBase):
             self.error = 'Please enter an email address.'
         elif not self.password or len(self.password) < 5:
             self.error = 'Your password is required and must be at least 5 characters long.'
+        
+        

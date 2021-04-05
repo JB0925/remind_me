@@ -28,7 +28,7 @@ def register(request: Request):
 async def register(request: Request):
     vm = RegisterViewModel(request)
     await vm.load()
-
+    print(vm)
     if vm.error:
         return vm.to_dict()
     
