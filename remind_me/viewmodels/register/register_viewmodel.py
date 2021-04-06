@@ -6,14 +6,13 @@ from remind_me.viewmodels.shared.viewmodel import ViewModelBase
 class RegisterViewModel(ViewModelBase):
     def __init__(self, request: Request) -> None:
         super().__init__(request)
-        self.name: Optional[str] = ""
-        self.email: Optional[str] = ""
-        self.password: Optional[str] = ""
-    
+        self.name: Optional[str] = None
+        self.email: Optional[str] = None
+        self.password: Optional[str] = None
+
 
     async def load(self):
         form = await self.request.form()
-        print(form)
         self.name = form.get('name')
         self.email = form.get('email')
         self.password = form.get('password')

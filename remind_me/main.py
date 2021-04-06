@@ -12,7 +12,7 @@ def main():
     uvicorn.run(app, host='127.0.0.1', port=8000, debug=True)
 
 
-def configure():
+def configure(dev_mode: bool):
     configure_templates()
     configure_routes()
 
@@ -29,4 +29,4 @@ def configure_routes():
 if __name__ == '__main__':
     main()
 else:
-    configure()
+    configure(dev_mode=False)

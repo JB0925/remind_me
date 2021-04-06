@@ -1,7 +1,6 @@
 <div metal:use-macro="load: ../shared/base.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
-        <p class="lead text-center fw-bold">If you have not already, please register an account with us.
-        Already have an account? <a href="/login">Sign in</a></p>
+        <p class="lead text-center fw-bold">Please login if you have an account. Need an account?<a href="/register">Register Here</a></p>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6 mx-auto">
@@ -11,14 +10,10 @@
                             <input name="name" type="text" class="form-control" id="name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" required>
-                        </div>
-                        <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input name="password" type="password" class="form-control" id="password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
                         <div class="form-control text-danger lead" tal:condition="error">${ error }</div>
                     </form>
                 </div>
