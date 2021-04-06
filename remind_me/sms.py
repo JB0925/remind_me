@@ -2,7 +2,12 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-from config import MY_NUMBER, PASSWORD
+from decouple import config
+
+MY_NUMBER = config('MOBILE_NUMBER')
+EMAIL = config('EMAIL')
+PASSWORD = config('PASSWORD')
+
 
 carriers = {
     'att': 'mms.att.net',
@@ -12,32 +17,38 @@ carriers = {
 }
 
 jobs = [
-    ('Hi from Python', MY_NUMBER, 'Verizon'), 
-    ('dentist appointment', MY_NUMBER, 'verizon'), 
+    ('Hi from Python', MY_NUMBER, 'Verizon'),
+    ('dentist appointment', MY_NUMBER, 'verizon'),
     ('dah dah dah', 2813308004, 'squigglydodah')
 ]
 
 
+class InvalidCarries(Exception):
+    pass
+
+
 def send(message, number, carrier):
-    if carrier.lower() not in carriers:
-        return
-    to_number = str(number)+'@{}'.format(carriers[carrier.lower()])
-    email, password = 'testagain180@gmail.com', PASSWORD
+    carrier = carrier.lower()
+
+    if carrier not in carriers:
+        raise InvalidCarries(f"'{carrier}' not a valid carrier")
+
+    to_number = f'{number}@{carriers[carrier]}'
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login(email, password)
+    server.login(EMAIL, PASSWORD)
 
     msg = MIMEMultipart()
-    msg['From'] = email
+    msg['From'] = EMAIL
     msg['To'] = to_number
     #msg['Subject'] = 'Hello\n'
     msg.attach(MIMEText(message, 'plain'))
     sms = msg.as_string()
 
 
-    server.sendmail(email, to_number, sms)
+    server.sendmail(EMAIL, to_number, sms)
     server.quit()
 
 

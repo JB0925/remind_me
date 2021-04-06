@@ -26,6 +26,9 @@ def scheduled_job(msg, number, carrier):
 def shutdown():
     sched.shutdown(wait=False)
 
+
+# TODO: we can use the API part here to post the tasks to a table and lead them
+# in here
 jobs = [
     ('kids dentist appt @ 12:30', 5409035731, 'Verizon', '04-02-2021 20:55'),
     ('go to sleep @ 11:30', 5409035731, 'verizon', '04-02-2021 20:56'),
@@ -35,6 +38,7 @@ jobs = [
 
 
 for job in jobs:
+    # TODO: I think you can deduplicate this
     if len(job) == 2:
         job, run_date = job
         run_date = parse(run_date)
@@ -43,8 +47,10 @@ for job in jobs:
         msg, number, carrier, run_date = job
         run_date = parse(run_date)
         sched.add_job(scheduled_job, args=(msg,number,carrier), trigger='date', run_date=run_date)
-    
-print(sched.get_jobs())
-sched.start()
+
+
+if __name__ == "__main__":
+    print(sched.get_jobs())
+    sched.start()
 
 

@@ -17,6 +17,7 @@ class ReadEmail:
 
     def get_messages(self, num_msgs):
         result, data = self.imap.uid('search', None, 'All')
+        # TODO: if not OK raise exception? Would it fail silently now?
         if result == 'OK':
             for num in data[0].split():
                 temp = []
@@ -30,7 +31,8 @@ class ReadEmail:
                     else:
                         temp.append(email_message.get_payload())
                 self.messages.append(temp)
-                    
+
+        # TODO: could turn this into a context manager
         self.imap.close()
         self.imap.logout()
         return self.messages[-1]
