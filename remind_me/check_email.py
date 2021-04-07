@@ -15,9 +15,15 @@ class ReadEmail:
         self.messages = []
 
 
-    def login(self):
+    def __enter__(self):
         self.imap.login(self.email, self.password)
         self.imap.select('"[Gmail]/All Mail"')
+        return self
+    
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        self.imap.close()
+        self.imap.logout()
 
 
     def get_messages(self):
@@ -36,15 +42,12 @@ class ReadEmail:
                         temp.append(email_message.get_payload())
                 self.messages.append(temp)
                     
-        self.imap.close()
-        self.imap.logout()
         return self.messages[-1]
 
 
 def main():
-    reader = ReadEmail()
-    reader.login()
-    print(reader.get_messages())
+    with ReadEmail() as reader:
+        reader.get_messages()
 
 
 if __name__ == '__main__':
