@@ -62,7 +62,7 @@ async def register(request: Request):
 @router.get('/login')
 @template()
 def login(request: Request):
-    vm = RegisterViewModel(request)
+    vm = LoginViewModel(request)
     return vm.to_dict()
 
 
