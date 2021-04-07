@@ -2,7 +2,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-from config import MY_NUMBER, PASSWORD
+from decouple import config
+
+EMAIL = config('EMAIL')
+PASSWORD = config('PASSWORD')
 
 carriers = {
     'att': 'mms.att.net',
@@ -11,37 +14,28 @@ carriers = {
     'sprint': 'page.nextel.com'
 }
 
-jobs = [
-    ('Hi from Python', MY_NUMBER, 'Verizon'), 
-    ('dentist appointment', MY_NUMBER, 'verizon'), 
-    ('dah dah dah', 2813308004, 'squigglydodah')
-]
+
+class InvalidCarrier(Exception):
+    pass
 
 
 def send(message, number, carrier):
     if carrier.lower() not in carriers:
-        return
+        raise InvalidCarrier(f"'{carrier}' is not a valid carrier.")
     to_number = str(number)+'@{}'.format(carriers[carrier.lower()])
-    email, password = 'testagain180@gmail.com', PASSWORD
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login(email, password)
+    server.login(EMAIL, PASSWORD)
 
     msg = MIMEMultipart()
-    msg['From'] = email
+    msg['From'] = EMAIL
     msg['To'] = to_number
-    #msg['Subject'] = 'Hello\n'
     msg.attach(MIMEText(message, 'plain'))
     sms = msg.as_string()
 
 
-    server.sendmail(email, to_number, sms)
+    server.sendmail(EMAIL, to_number, sms)
+    msg = ''
     server.quit()
-
-
-def send_multiple_messages(jobs):           #not sure if I'll need this, now that I figured out how to use a for loop
-    for job in jobs:                        #with apscheduler
-        msg, number, carrier = job
-        send(msg, number, carrier)

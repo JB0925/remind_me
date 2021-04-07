@@ -7,5 +7,3 @@ class User:
         self.name = name
         self.email = email
         self.hashed_password = hashed_password
-        self.created_date = None
-        self.last_login: datetime = None

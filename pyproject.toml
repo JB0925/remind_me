@@ -12,6 +12,7 @@ fastapi = "^0.63.0"
 uvicorn = "^0.13.4"
 fastapi-chameleon = {git = "https://github.com/mikeckennedy/fastapi-chameleon", rev = "main"}
 python-multipart = "^0.0.5"
+python-decouple = "^3.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

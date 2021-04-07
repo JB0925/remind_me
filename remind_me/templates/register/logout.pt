@@ -1,0 +1,14 @@
+<div metal:use-macro="load: ../shared/base.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+        <p class="lead text-center fw-bold">Are you sure you want to sign out?</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-1 mx-auto">
+                    <form action="" method="POST" class="mx-auto">
+                        <button type="submit" class="btn btn-primary">Sign Out</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
