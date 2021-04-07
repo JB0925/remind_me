@@ -1,3 +1,4 @@
+from threading import Event
 from typing import Optional
 import hashlib
 import uuid
@@ -6,8 +7,7 @@ from passlib.handlers.sha2_crypt import sha512_crypt as crypto
 
 from remind_me.data.user import User
 from remind_me.data import db_session
-
-
+from remind_me.data import events
 
 
 def hash_password(password):
@@ -57,10 +57,22 @@ def make_job(event: str, number: str, carrier:str, date: str):
     return [(event, number, carrier, date)]
 
 
-def store_events(email, phone_number, carrier, event, date_and_time, user_id):
+def store_events(name, phone_number, carrier, event, date_and_time):
     session = db_session.create_session()
 
     try:
-        user = session.query(User).filter(User.email == email).first()
+        user = session.query(User).filter(User.name == name).first()
+        new_event = events.Events()
+        new_event.phone_number = phone_number
+        new_event.carrier = carrier
+        new_event.event = event
+        new_event.date_and_time = date_and_time
+        new_event.user_id = user.id
 
+        session.add(new_event)
+        session.commit()
+
+        return new_event
+    finally:
+        session.close()
 

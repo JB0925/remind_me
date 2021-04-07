@@ -23,8 +23,10 @@ def global_init():
 def create_session() -> Session:
     global __factory
 
-    if not __factory:
-        raise Exception('You must call global_init() before using this method')
+    # if not __factory:
+    #     raise Exception('You must call global_init() before using this method')
+    if __factory:
+        return
     
     session: Session = __factory()
     session.expire_on_commit = False

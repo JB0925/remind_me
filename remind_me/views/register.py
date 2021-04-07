@@ -34,6 +34,7 @@ async def home(request: Request):
 
     job = user_service.make_job(vm.task, vm.number, vm.carrier, vm.date_and_time)
     schedule_jobs.main(job)
+    user_service.store_events(vm.name, vm.number, vm.carrier, vm.task, vm.date_and_time)
     return fastapi.responses.RedirectResponse(url="/", status_code=status.HTTP_302_FOUND)
 
 
