@@ -11,7 +11,7 @@ carriers = {
     'att': 'mms.att.net',
     'tmobile': 'tmomail.net',
     'verizon': 'vtext.com',
-    'sprint': 'page.nextel.com'
+    'sprint': 'pm.sprint.com'
 }
 
 

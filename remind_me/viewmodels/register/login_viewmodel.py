@@ -18,5 +18,5 @@ class LoginViewModel(ViewModelBase):
 
         if not self.name or not self.name.strip():
             self.error = 'You must input a name.'
-        elif not self.password:
+        elif not self.password or len(self.password) < 5:
             self.error = 'You must input a password.'
