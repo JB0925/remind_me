@@ -10,7 +10,7 @@ auth_key = 'remind_me_account'
 def set_auth(response: Response, user_id: int):
     hashed_id = _hash_text(str(user_id))
     val = '{}:{}'.format(user_id, hashed_id)
-    response.set_cookie(auth_key, val, secure=False, httponly=True) #secure = False for development
+    response.set_cookie(auth_key, val, secure=False, httponly=True, samesite='Lax') #secure = False for development
 
 
 def _hash_text(text: str) -> str:
