@@ -54,7 +54,7 @@ async def register(request: Request):
     if vm.error:
         return vm.to_dict()
     
-    account = user_service.create_account(vm.name, vm.email, vm.password)
+    account = user_service.create_account(vm.name.lower(), vm.email, vm.password)
     response = fastapi.responses.RedirectResponse(url='/', status_code=status.HTTP_302_FOUND)
     cookie_auth.set_auth(response, account.id)
     return response

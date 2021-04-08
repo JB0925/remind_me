@@ -41,7 +41,8 @@ def login_user(name: str, password: str) -> Optional[User]:
     session = db_session.create_session()
 
     try:
-        user = session.query(User).filter(User.name == name).first()
+        user = session.query(User).filter(User.name == name.lower()).first()
+        
         if not user:
             return user
         
@@ -57,11 +58,11 @@ def make_job(event: str, number: str, carrier:str, date: str):
     return [(event, number, carrier, date)]
 
 
-def store_events(name, phone_number, carrier, event, date_and_time):
+def store_events(name: str, phone_number: str, carrier: str, event: str, date_and_time: str):
     session = db_session.create_session()
 
     try:
-        user = session.query(User).filter(User.name == name).first()
+        user = session.query(User).filter(User.name == name.lower()).first()
         new_event = events.Events()
         new_event.phone_number = phone_number
         new_event.carrier = carrier

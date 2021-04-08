@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import Callable, Optional
 
 import sqlalchemy as sa
@@ -12,6 +11,9 @@ __factory: Optional[Callable[[], Session]] = None
 
 
 def global_init():
+    global __factory
+    if __factory:
+        return
     conn_string = config('CONN_STRING')
     engine = sa.create_engine(conn_string, echo=False)
     __factory = orm.sessionmaker(bind=engine)
@@ -23,10 +25,8 @@ def global_init():
 def create_session() -> Session:
     global __factory
 
-    # if not __factory:
-    #     raise Exception('You must call global_init() before using this method')
-    if __factory:
-        return
+    if not __factory:
+        raise Exception('You must call global_init() before using this method')
     
     session: Session = __factory()
     session.expire_on_commit = False

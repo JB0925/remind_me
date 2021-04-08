@@ -10,10 +10,10 @@ class Events(SqlAlchemyBase):
     __tablename__ = 'events'
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
-    phone_number = sa.Column(sa.String, index=True, unique=True)
-    carrier = sa.Column(sa.String)
-    event = sa.Column(sa.String, index=True)
-    date_and_time = sa.Column(sa.String, index=True)
+    phone_number = sa.Column(sa.String, index=True, nullable=False)
+    carrier = sa.Column(sa.String, nullable=False)
+    event = sa.Column(sa.String, index=True, nullable=False)
+    date_and_time = sa.Column(sa.String, index=True, nullable=False)
 
     user_id = sa.Column(sa.Integer, sa.ForeignKey('users.id'))
     user = orm.relation('User')
