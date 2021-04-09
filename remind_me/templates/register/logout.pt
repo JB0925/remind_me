@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-1 mx-auto">
                     <form action="" method="POST" class="mx-auto">
-                        <button type="submit" class="btn btn-primary">Sign Out</button>
+                        <button type="submit" class="btn btn-primary">Logout</button>
                     </form>
                 </div>
             </div>
