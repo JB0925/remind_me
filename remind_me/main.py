@@ -20,7 +20,7 @@ def configure(dev_mode: bool):
 
 
 def configure_templates():
-    fastapi_chameleon.global_init(template_folder='templates')
+    fastapi_chameleon.global_init(template_folder='remind_me/templates')
 
 
 def configure_db(dev_mode: bool):
