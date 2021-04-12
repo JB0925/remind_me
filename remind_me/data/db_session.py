@@ -14,7 +14,7 @@ def global_init():
     global __factory
     if __factory:
         return
-    conn_string = config('CONN_STRING')
+    conn_string = config('DATABASE_URL')
     engine = sa.create_engine(conn_string, echo=False)
     __factory = orm.sessionmaker(bind=engine)
     import remind_me.data._all_models
