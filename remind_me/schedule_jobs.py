@@ -37,5 +37,6 @@ def main(jobs):
 
 
 if __name__ == '__main__':
-    main()
+    main(jobs)
+
 
