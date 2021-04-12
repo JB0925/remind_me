@@ -15,7 +15,7 @@ def shutdown():
     sched.shutdown(wait=False)
 
 
-def run_jobs(jobs):
+def run_jobs(jobs=None):
     for job in jobs:
         if len(job) == 2:
             job, run_date = job
