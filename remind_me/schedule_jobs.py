@@ -1,10 +1,10 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.blocking import BlockingScheduler
 from dateutil.parser import parse
 
 from remind_me.sms import send
 from remind_me.check_email import ReadEmail
 
-sched = BackgroundScheduler()
+sched = BlockingScheduler()
 
 
 def scheduled_job(msg, number, carrier):
