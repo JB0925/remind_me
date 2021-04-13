@@ -3,7 +3,10 @@ from fastapi import requests
 from fastapi_chameleon import template
 from starlette.requests import Request
 from starlette import status
+from apscheduler.schedulers.background import BackgroundScheduler
+from dateutil.parser import parse
 
+from remind_me.sms import send
 from remind_me.viewmodels.shared.viewmodel import ViewModelBase
 from remind_me.viewmodels.register.register_viewmodel import RegisterViewModel
 from remind_me.viewmodels.register.login_viewmodel import LoginViewModel
@@ -13,6 +16,10 @@ from remind_me.infrastructure import cookie_auth
 from remind_me import schedule_jobs
 
 router = fastapi.APIRouter()
+sched = BackgroundScheduler({'apscheduler.timezone': 'EST'})
+
+def scheduled_job(msg, number, carrier):
+    send(msg, number, carrier)
 
 @router.get('/')
 @template()
@@ -32,8 +39,15 @@ async def home(request: Request):
     if vm.error:
         return vm.to_dict()
 
-    job = user_service.make_job(vm.task, vm.number, vm.carrier, vm.date_and_time)
-    schedule_jobs.main(job)
+    #job = user_service.make_job(vm.task, vm.number, vm.carrier, vm.date_and_time)
+    #schedule_jobs.main(job)
+    msg, number, carrier, run_date = vm.task, vm.number, vm.carrier, vm.date_and_time
+    run_date = parse(run_date)
+    sched.add_job(scheduled_job, args=(msg,number,carrier), trigger='date', run_date=run_date)
+    try:
+       sched.start()
+    except:
+       pass
     user_service.store_events(vm.name, vm.number, vm.carrier, vm.task, vm.date_and_time)
     return fastapi.responses.RedirectResponse(url="/", status_code=status.HTTP_302_FOUND)
 
@@ -99,3 +113,7 @@ def logout():
     response = fastapi.responses.RedirectResponse(url='/login', status_code=status.HTTP_302_FOUND)
     cookie_auth.logout(response)
     return response
+
+
+
+
