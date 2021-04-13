@@ -3,7 +3,7 @@ from fastapi import requests
 from fastapi_chameleon import template
 from starlette.requests import Request
 from starlette import status
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dateutil.parser import parse
 
 from remind_me.sms import send
@@ -16,7 +16,7 @@ from remind_me.infrastructure import cookie_auth
 from remind_me import schedule_jobs
 
 router = fastapi.APIRouter()
-sched = BackgroundScheduler({'apscheduler.timezone': 'EST'})
+sched = AsyncIOScheduler({'apscheduler.timezone': 'EST'})
 
 def scheduled_job(msg, number, carrier):
     send(msg, number, carrier)
