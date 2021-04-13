@@ -18,7 +18,7 @@ router = fastapi.APIRouter()
 
 @router.get('/')
 @template()
-def home(request: Request): 
+def home(request: Request):
     vm = ViewModelBase(request)
     if vm.is_logged_in:
         return vm.to_dict()
@@ -27,15 +27,15 @@ def home(request: Request):
 
 @router.post('/')
 @template()
-async def home(request: Request): 
+async def home(request: Request):
     vm = HomeViewModel(request)
     await vm.load()
-    
+
     if vm.error:
         return vm.to_dict()
 
     job = user_service.make_job(vm.task, vm.number, vm.carrier, vm.date_and_time)
-    schedule_jobs.main(job)
+    schedule_jobs.add_job(job[0])
     user_service.store_events(vm.name, vm.number, vm.carrier, vm.task, vm.date_and_time)
     return fastapi.responses.RedirectResponse(url="/", status_code=status.HTTP_302_FOUND)
 
@@ -52,10 +52,10 @@ def register(request: Request):
 async def register(request: Request):
     vm = RegisterViewModel(request)
     await vm.load()
-    
+
     if vm.error:
         return vm.to_dict()
-    
+
     account = user_service.create_account(vm.name.lower(), vm.email, vm.password)
     response = fastapi.responses.RedirectResponse(url='/', status_code=status.HTTP_302_FOUND)
     cookie_auth.set_auth(response, account.id)
@@ -74,15 +74,15 @@ def login(request: Request):
 async def login(request: Request):
     vm = LoginViewModel(request)
     await vm.load()
-    
+
     if vm.error:
         return vm.to_dict()
-    
+
     user = user_service.login_user(vm.name, vm.password)
     if not user:
         vm.error = 'This account does not exist or the password was entered incorrectly.'
         return vm.to_dict()
-    
+
     response_ = fastapi.responses.RedirectResponse(url='/', status_code=status.HTTP_302_FOUND)
     cookie_auth.set_auth(response_, user.id)
     return response_
@@ -93,7 +93,7 @@ async def login(request: Request):
 def logout(request: Request):
     vm = ViewModelBase(request)
     return vm.to_dict()
-    
+
 
 @router.post('/logout')
 @template()
