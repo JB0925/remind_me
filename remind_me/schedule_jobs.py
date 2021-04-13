@@ -4,7 +4,7 @@ from dateutil.parser import parse
 from remind_me.sms import send
 from remind_me.check_email import ReadEmail
 
-sched = BackgroundScheduler({'apscheduler.timezone': 'EST'})
+sched = BackgroundScheduler()
 
 
 def scheduled_job(msg, number, carrier):
@@ -15,7 +15,7 @@ def shutdown():
     sched.shutdown(wait=False)
 
 
-def run_jobs(jobs=None):
+def run_jobs(jobs):
     for job in jobs:
         if len(job) == 2:
             job, run_date = job
@@ -27,7 +27,7 @@ def run_jobs(jobs=None):
             sched.add_job(scheduled_job, args=(msg,number,carrier), trigger='date', run_date=run_date)
 
 
-def main(jobs=None):
+def main(jobs):
     run_jobs(jobs)
     print(sched.get_jobs())
     try:
