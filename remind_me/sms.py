@@ -8,7 +8,7 @@ EMAIL = config('EMAIL')
 PASSWORD = config('PASSWORD')
 
 carriers = {
-    'att': 'mms.att.net',
+    'at&t': 'mms.att.net',
     'tmobile': 'tmomail.net',
     'verizon': 'vtext.com',
     'sprint': 'pm.sprint.com'

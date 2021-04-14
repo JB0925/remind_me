@@ -3,7 +3,7 @@
         <p class="fw-bold text-center lead">Please enter your events in the following format:</p>
         <ul class="mx-auto">
             <li class="text-center fw-bold">Enter your 10 digit phone number with no spaces or hyphens as well as your phone carrier. <span class="fst-italic">e.g. (1234567890)</span></li>
-            <li class="text-center fw-bold">Enter your event, and the date and time (military time) to be reminded in the following format: <span class="fst-italic">2021-04-19 20:36</span></li>
+            <li class="text-center fw-bold">Enter your event, and the date and time to be reminded in the following format: <span class="fst-italic">2021-04-19 20:36</span></li>
             <li class="text-center fw-bold">The date above is April 19, 2021 and the time is 8:36 PM.</li>
         </ul>
         <p class="lead fw-bold text-center">NOTE: Your phone carrier must be Verizon, ATandT, Sprint, or TMobile</p>
@@ -26,9 +26,18 @@
                                     <label for="number" class="form-label">Phone Number</label>
                                     <input name="number" type="text" class="form-control" id="number" placeholder="Enter Your 10 Digit Phone Number" required>
                                 </div>
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="carrier" class="form-label">Phone Carrier</label>
                                     <input name="carrier" type="text" class="form-control" id="carrier" placeholder="Enter Your Phone Service Provider" required>
+                                </div> -->
+                                <div class="form-group">
+                                    <label for="carrier">Click to Select Your Phone Carrier</label>
+                                    <select name="carrier" class="form-control" id="carrier">
+                                        <option>Verizon</option>
+                                        <option>AT&amp;T</option>
+                                        <option>Sprint</option>
+                                        <option>TMobile</option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="date_and_time" class="form-label">Date and Time to be Reminded</label>
