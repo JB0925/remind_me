@@ -48,7 +48,7 @@
             </div>
         </div>
     </nav>
-    <h1 class="display-3 text-center fw-bold">Welcome to Remind Me!</h1>
+    <h1 class="display-3 text-center text-secondary fw-bold">Welcome to Remind Me!</h1>
     <p class="lead text-center fw-bold">Get a text to remind you about any event, at a date and time of your choice.</p>
     <div>
         <div metal:define-slot="content" tal:omit-tag="True">No Content</div>

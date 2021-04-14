@@ -7,6 +7,8 @@
             <li class="text-center fw-bold">The date above is April 19, 2021 and the time is 8:36 PM.</li>
         </ul>
         <p class="lead fw-bold text-center">NOTE: Your phone carrier must be Verizon, ATandT, Sprint, or TMobile</p>
+        <p class="lead fw-bold text-center">Timezone Note: Choose the option with a "D" in it if you are in daylight savings time.<br> 
+        (i.e. EST when not in daylight savings, and EDT during daylight savings.</p>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
