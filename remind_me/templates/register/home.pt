@@ -36,6 +36,22 @@
                                     <label for="task" class="form-label">Task</label>
                                     <textarea name="task" class="form-control" id="task" rows="3" placeholder="Enter your task here." required></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="timezone">Click to Select Your Time Zone</label>
+                                    <select name="timezone" class="form-control" id="timezone">
+                                        <option>EST</option>
+                                        <option>EDT</option>
+                                        <option>CDT</option>
+                                        <option>CST</option>
+                                        <option>MDT</option>
+                                        <option>MST</option>
+                                        <option>PDT</option>
+                                        <option>PST</option>
+                                        <option>AKST</option>
+                                        <option>AKDT</option>
+                                        <option>Hawaii</option>
+                                    </select>
+                                </div>
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>

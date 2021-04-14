@@ -20,9 +20,9 @@ class InvalidCarrier(Exception):
 
 
 def send(message, number, carrier):
-    if carrier.lower() not in carriers:
+    if carrier.lower().strip() not in carriers:
         raise InvalidCarrier(f"'{carrier}' is not a valid carrier.")
-    to_number = str(number)+'@{}'.format(carriers[carrier.lower()])
+    to_number = str(number)+'@{}'.format(carriers[carrier.lower().strip()])
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()

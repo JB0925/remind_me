@@ -12,6 +12,7 @@ class HomeViewModel(ViewModelBase):
         self.task = ''
         self.date_and_time = ''
         self.carrier = ''
+        self.timezone = ''
     
 
     async def load(self):
@@ -22,6 +23,7 @@ class HomeViewModel(ViewModelBase):
         self.date_and_time = form.get('date_and_time')
         self.task = form.get('task')
         self.carrier = form.get('carrier')
+        self.timezone = form.get('timezone')
 
         if not self.name or not self.name.strip():
             self.error = 'You must enter a name.'
@@ -33,3 +35,5 @@ class HomeViewModel(ViewModelBase):
             self.error = 'You need to enter a task, and it must be less than 50 characters in length.'
         elif not self.carrier or not self.carrier.strip():
             self.error = 'You need to enter a phone service carrier.'
+        elif not self.timezone or not self.timezone.strip():
+            self.error = 'Please enter a timezone'
