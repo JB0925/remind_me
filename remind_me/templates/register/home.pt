@@ -1,14 +1,19 @@
 <div metal:use-macro="load: ../shared/base.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
-        <p class="fw-bold text-center lead">Please enter your events in the following format:</p>
-        <ul class="mx-auto">
-            <li class="text-center fw-bold">Enter your 10 digit phone number with no spaces or hyphens as well as your phone carrier. <span class="fst-italic">e.g. (1234567890)</span></li>
-            <li class="text-center fw-bold">Enter your event, and the date and time to be reminded in the following format: <span class="fst-italic">2021-04-19 20:36</span></li>
-            <li class="text-center fw-bold">The date above is April 19, 2021 and the time is 8:36 PM.</li>
-        </ul>
-        
-        <p class="lead fw-bold text-center">Timezone Note: Choose the option with a "D" in it if you are in daylight savings time.<br> 
-        (i.e. EST when not in daylight savings, and EDT during daylight savings.</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" style="background-color: rgb(255, 255, 255, 0.45)">
+                <p class="fw-bold text-center lead">Please enter your events in the following format:</p>
+                <ul class="mx-auto">
+                    <li class="text-center fw-bold">Enter your 10 digit phone number with no spaces or hyphens as well as your phone carrier. <span class="fst-italic">e.g. (1234567890)</span></li>
+                    <li class="text-center fw-bold">Enter your event, and the date and time to be reminded in the following format: <span class="fst-italic">2021-04-19 20:36</span></li>
+                    <li class="text-center fw-bold">The date above is April 19, 2021 and the time is 8:36 PM.</li>
+                </ul>
+                <p class="lead fw-bold text-center">Timezone Note: Choose the option with a "D" in it if you are in daylight savings time.<br> 
+                (i.e. EST when not in daylight savings, and EDT during daylight savings.</p>
+            </div>
+        </div>
+    </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">

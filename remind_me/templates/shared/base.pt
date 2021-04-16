@@ -48,12 +48,20 @@
             </div>
         </div>
     </nav>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1 class="display-3 text-center fw-bold">Welcome to Remind Me!</h1>
-    <p class="lead text-center fw-bold">Get a text to remind you about any event, at a date and time of your choice.</p>
+    <div style="background-color: rgb(255, 255, 255, 0.45)">
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" style="background-color: rgb(255, 255, 255, 0.45)">
+                <h1 class="display-3 text-center fw-bold">Welcome to Remind Me!</h1>
+                <p class="lead text-center fw-bold">Get a text to remind you about any event, at a date and time of your choice.</p>
+            </div>
+        </div>
+    </div>
     <div>
         <div metal:define-slot="content" tal:omit-tag="True">No Content</div>
     </div>
