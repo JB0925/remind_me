@@ -3,6 +3,7 @@ import fastapi
 import uvicorn
 import fastapi_chameleon
 from starlette.staticfiles import StaticFiles
+
 from remind_me.views import register
 from remind_me.data.db_session import global_init
 
