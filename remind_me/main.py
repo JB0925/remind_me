@@ -5,12 +5,14 @@ import fastapi_chameleon
 from starlette.staticfiles import StaticFiles
 from remind_me.views import register
 from remind_me.data.db_session import global_init
+from remind_me.services.ping import make_pings
 
 app = fastapi.FastAPI()
 
 def main():
     configure(dev_mode=True)
     uvicorn.run(app, host='127.0.0.1', port=8000, debug=True)
+    make_pings()
 
 
 def configure(dev_mode: bool):
@@ -36,3 +38,4 @@ if __name__ == '__main__':
     main()
 else:
     configure(dev_mode=False)
+    make_pings()
