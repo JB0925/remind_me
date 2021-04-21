@@ -18,6 +18,7 @@ psycopg2-binary = "^2.8.6"
 passlib = "^1.7.4"
 aiofiles = "^0.6.0"
 asyncio = "^3.4.3"
+requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
