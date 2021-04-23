@@ -58,7 +58,7 @@ def make_job(event: str, number: str, carrier:str, date: str):
     return [(event, number, carrier, date)]
 
 
-def store_events(name: str, phone_number: str, carrier: str, event: str, date_and_time: str):
+def store_events(name: str, phone_number: str, carrier: str, event: str, date_and_time: str, timezone: str):
     session = db_session.create_session()
 
     try:
@@ -68,6 +68,7 @@ def store_events(name: str, phone_number: str, carrier: str, event: str, date_an
         new_event.carrier = carrier
         new_event.event = event
         new_event.date_and_time = date_and_time
+        new_event.timezone = timezone
         new_event.user_id = user.id
 
         session.add(new_event)
