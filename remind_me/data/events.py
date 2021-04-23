@@ -14,6 +14,8 @@ class Events(SqlAlchemyBase):
     carrier = sa.Column(sa.String, nullable=False)
     event = sa.Column(sa.String, index=True, nullable=False)
     date_and_time = sa.Column(sa.String, index=True, nullable=False)
+    sent = sa.Column(sa.Boolean, index=True, nullable=False, default=False)
+    timezone = sa.Column(sa.String, index=True, nullable=False)
 
     user_id = sa.Column(sa.Integer, sa.ForeignKey('users.id'))
     user = orm.relation('User')
