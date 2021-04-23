@@ -8,6 +8,9 @@ from decouple import config
 
 from remind_me.sms import send
 from remind_me.check_email import ReadEmail
+from remind_me.data import db_session
+from remind_me.data.events import Events
+from sqlalchemy.orm import session
 
 jobstore = {'default': SQLAlchemyJobStore(url=config('DATABASE_URL'))}
 sched = BackgroundScheduler(jobstores=jobstore)
@@ -25,7 +28,11 @@ timezones = {
 
 def scheduled_job(msg, number, carrier):
     send(msg, number, carrier)
-
+    session = db_session.create_session()
+    ev = session.query(Events).filter(Events.event == msg).first()
+    ev.sent = True
+    session.commit()
+    
 
 def shutdown():
     sched.shutdown(wait=False)

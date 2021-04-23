@@ -18,7 +18,7 @@ def ping_site() -> None:
     all_events = session.query(Events).filter(Events.sent == False).all()
     print(all_events)
     for ev in all_events:
-        event_time = parse(ev.date_and_time) #+ timedelta(hours=timezones[ev.timezone])
+        event_time = parse(ev.date_and_time) + timedelta(hours=timezones[ev.timezone])
         current_time = datetime.now()
         if current_time > event_time:
             ev.sent = True
