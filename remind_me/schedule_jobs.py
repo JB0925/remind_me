@@ -32,6 +32,7 @@ def scheduled_job(msg, number, carrier):
     ev = session.query(Events).filter(Events.event == msg).first()
     ev.sent = True
     session.commit()
+    session.close()
     
 
 def shutdown():
