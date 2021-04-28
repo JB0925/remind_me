@@ -26,6 +26,7 @@ def ping_site() -> None:
             send(ev.event, ev.phone_number, ev.carrier)
     response = requests.get('https://desolate-garden-98632.herokuapp.com/')
     print(response.status_code)
+    session.close()
 
 
 def make_pings():
