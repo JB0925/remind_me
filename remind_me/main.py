@@ -31,7 +31,7 @@ def configure_db(dev_mode: bool):
 
 
 def configure_routes():
-   #app.mount('remind_me/static', StaticFiles(directory='/remind_me/remind_me/static'), name='static')
+    app.mount("/static", StaticFiles(directory="static"), name="static")
     app.include_router(register.router)
 
 

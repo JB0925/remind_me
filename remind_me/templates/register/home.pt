@@ -9,7 +9,7 @@
                     <li class="text-center fw-bold">Enter your event, and the date and time to be reminded in the following format: <span class="fst-italic">2021-04-19 20:36</span></li>
                     <li class="text-center fw-bold">The date above is April 19, 2021 and the time is 8:36 PM.</li>
                 </ul>
-                <p class="lead fw-bold text-center">Timezone Note: Choose the option with a "D" in it if you are in daylight savings time.<br> 
+                <p class="lead fw-bold text-center">Timezone Note: Choose the option with a "D" in it if you are in daylight savings time.<br>
                 (i.e. EST when not in daylight savings, and EDT during daylight savings.</p>
             </div>
         </div>
@@ -18,10 +18,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-6 border border-dark text-center">
-                            My Content Goes Here
+                        <div class="col-2 border border-dark text-center">
                         </div>
-                        <div class="col-6 fw-bold border border-dark border-3">
+                        <div class="col-8 fw-bold border border-dark border-3">
                             <form action="" method="POST">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>
@@ -73,6 +72,8 @@
                                 </div>
                                 <div class="form-control text-danger lead" tal:condition="error">${ error }</div>
                             </form>
+                        </div>
+                        <div class="col-2 border border-dark text-center">
                         </div>
                     </div>
                 </div>
