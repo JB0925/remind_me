@@ -24,7 +24,7 @@ def send(message, number, carrier):
         raise InvalidCarrier(f"'{carrier}' is not a valid carrier.")
     to_number = str(number)+'@{}'.format(carriers[carrier.lower().strip()])
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server = smtplib.SMTP('smtp.mail.yahoo.com', 465)
     server.ehlo()
     server.starttls()
     server.login(EMAIL, PASSWORD)
